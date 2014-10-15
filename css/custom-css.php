@@ -1,5 +1,6 @@
 <?php
 header("Content-type: text/css");
 $custom_css = get_option('wpacc_settings');
-echo esc_attr($custom_css['main_custom_style']);
+$custom_css = wp_kses( $custom_css['main_custom_style'], array( '\'', '\"' ) );
+echo $custom_css;
 ?>
