@@ -3,7 +3,7 @@ Contributors: danieledesantis
 Tags: css, custom css, stylesheet, custom stylesheet, single post css, site css, single page css
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 0.9
+Stable tag: 0.9.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,5 +52,13 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 
 == Changelog ==
 
+= 0.9.1 =
+* Fixed double quotes rendering issue
+
 = 0.9 =
 * First release
+
+== Upgrade Notice ==
+
+= 0.9.1 =
+Fixed double quotes rendering issue
