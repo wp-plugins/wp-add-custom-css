@@ -3,7 +3,7 @@
 Plugin Name: WP Add Custom CSS
 Plugin URI: http://www.danieledesantis.net
 Description: Add custom css to the whole website and to specific posts and pages.
-Version: 0.9.1
+Version: 0.9.2
 Author: Daniele De Santis
 Author URI: http://www.danieledesantis.net
 Text Domain: wp-add-custom-css
@@ -86,7 +86,7 @@ if(!class_exists('Wpacc'))
 			wp_nonce_field( 'single_add_custom_css_box', 'wp_add_custom_css_box_nonce' );
 	  		$single_custom_css = get_post_meta( $post->ID, '_single_add_custom_css', true );
 	  		echo '<p>'.  __( 'Add custom CSS rules for this ' . $post->post_type, 'wp-add-custom-css' ) . '</p> ';
-			echo '<textarea id="single_custom_css" name="single_custom_css" style="min-height:200px;">' . esc_attr( $single_custom_css ) . '</textarea>';
+			echo '<textarea id="single_custom_css" name="single_custom_css" style="width:100%; min-height:200px;">' . esc_attr( $single_custom_css ) . '</textarea>';
 		}
 		
 		public function add_menu() {
@@ -117,10 +117,8 @@ if(!class_exists('Wpacc'))
     	}
 		
 		public function main_css_input() {
-        	printf(
-            	'<textarea name="wpacc_settings[main_custom_style]" style="min-height:300px;">%s</textarea>',
-            	isset( $this->options['main_custom_style'] ) ? esc_attr( $this->options['main_custom_style'] ) : ''
-        	);
+        	$custom_rules = isset( $this->options['main_custom_style'] ) ? esc_attr( $this->options['main_custom_style'] ) : '';
+			echo '<textarea name="wpacc_settings[main_custom_style]" style="width:100%; min-height:300px;">' . $custom_rules . '</textarea>';
     	}
 		
 		public function init_settings() {
