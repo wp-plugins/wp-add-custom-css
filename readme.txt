@@ -67,5 +67,12 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 
 == Upgrade Notice ==
 
+= 0.9.3 =
+* Fixed minor bug
+
+= 0.9.2 =
+* Fixed minor bug
+* Minor layout change
+
 = 0.9.1 =
 Fixed double quotes rendering issue
