@@ -53,7 +53,7 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 == Changelog ==
 
 = 0.9.4 =
-* Fixed minor bug
+* Fixed &gt; rendering issue
 
 = 0.9.3 =
 * Fixed minor bug
@@ -71,7 +71,7 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 == Upgrade Notice ==
 
 = 0.9.4 =
-* Fixed minor bug
+* Fixed &gt; rendering issue
 
 = 0.9.3 =
 * Fixed minor bug
