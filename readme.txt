@@ -3,7 +3,7 @@ Contributors: danieledesantis
 Tags: css, custom css, stylesheet, custom stylesheet, single post css, site css, single page css
 Requires at least: 4.0
 Tested up to: 4.1.1
-Stable tag: 0.9.3
+Stable tag: 0.9.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,9 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 
 == Changelog ==
 
+= 0.9.4 =
+* Fixed minor bug
+
 = 0.9.3 =
 * Fixed minor bug
 
@@ -66,6 +69,9 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 * First release
 
 == Upgrade Notice ==
+
+= 0.9.4 =
+* Fixed minor bug
 
 = 0.9.3 =
 * Fixed minor bug
