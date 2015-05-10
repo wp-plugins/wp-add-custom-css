@@ -18,8 +18,8 @@ You can edit the main stylesheet from the the "Add custom CSS" settings page.
 The plugin also creates a new "Custom CSS" box in the editing area to add custom CSS to specific posts and pages.
 
 Available languages:
-* English
-* German - thanks to [Bodo Graumann](http://bodograumann.de/)
+English
+German - thanks to <a href="http://bodograumann.de/" target="_blank">Bodo Graumann</a>
 
 == Installation ==
 
