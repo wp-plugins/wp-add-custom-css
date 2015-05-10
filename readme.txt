@@ -2,8 +2,8 @@
 Contributors: danieledesantis
 Tags: css, custom css, stylesheet, custom stylesheet, single post css, site css, single page css
 Requires at least: 4.0
-Tested up to: 4.1.1
-Stable tag: 0.9.4
+Tested up to: 4.2.2
+Stable tag: 0.9.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,10 @@ The CSS rules applied to the whole website will override the default stylesheets
 
 You can edit the main stylesheet from the the "Add custom CSS" settings page.
 The plugin also creates a new "Custom CSS" box in the editing area to add custom CSS to specific posts and pages.
+
+Available languages:
+* English
+* German - thanks to [Bodo Graumann](http://bodograumann.de/)
 
 == Installation ==
 
@@ -52,6 +56,9 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 
 == Changelog ==
 
+= 0.9.5 =
+* Improved css output for single posts and pages
+
 = 0.9.4 =
 * Fixed &gt; rendering issue
 
@@ -69,6 +76,9 @@ Click on the "Screen option" link from your post/page editing area and be sure t
 * First release
 
 == Upgrade Notice ==
+
+= 0.9.5 =
+* Improved css output for single posts and pages
 
 = 0.9.4 =
 * Fixed &gt; rendering issue

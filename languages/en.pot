@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Add Custom CSS\n"
-"POT-Creation-Date: 2014-10-04 16:46+0100\n"
-"PO-Revision-Date: 2014-10-04 16:46+0100\n"
+"POT-Creation-Date: 2015-05-10 19:07+0100\n"
+"PO-Revision-Date: 2015-05-10 19:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,34 +16,55 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: ..\n"
 
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:62
 #: ../wordpress-add-custom-css.php:62
 msgid "Custom CSS"
 msgstr ""
 
-#: ../wordpress-add-custom-css.php:88
-msgid "Add custom CSS rules for this "
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:89
+#: ../wordpress-add-custom-css.php:89
+#, php-format
+msgid "Add custom CSS rules for this %s"
 msgstr ""
 
-#: ../wordpress-add-custom-css.php:101
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:102
+#: ../wordpress-add-custom-css.php:95 ../wordpress-add-custom-css.php:102
 msgid "Wordpress Add Custom CSS"
 msgstr ""
 
-#: ../wordpress-add-custom-css.php:105
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:106
+#: ../wordpress-add-custom-css.php:106
 msgid "Save"
 msgstr ""
 
-#: ../wordpress-add-custom-css.php:107
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:108
+#: ../wordpress-add-custom-css.php:108
 msgid "Credits"
 msgstr ""
 
-#: ../wordpress-add-custom-css.php:109
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:110
+#: ../wordpress-add-custom-css.php:110
 msgid "\"WP Add Custom CSS\" is a plugin by"
 msgstr ""
 
-#: ../wordpress-add-custom-css.php:116
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:117
+#: ../wordpress-add-custom-css.php:117
 msgid "Write here the CSS rules you want to apply to the whole website."
 msgstr ""
 
+#: ../wordpress-add-custom-css - TEST CUSTOM POST TYPE.php:202
 #: ../wordpress-add-custom-css.php:202
 msgid "Settings"
+msgstr ""
+
+#: ../wordpress-add-custom-css.php:95
+msgid "Add Custom CSS"
+msgstr ""
+
+#: ../wordpress-add-custom-css.php:132
+msgid "Main CSS"
+msgstr ""
+
+#: ../wordpress-add-custom-css.php:138
+msgid "CSS rules"
 msgstr ""
