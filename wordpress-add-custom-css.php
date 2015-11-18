@@ -3,7 +3,7 @@
 Plugin Name: WP Add Custom CSS
 Plugin URI: http://www.danieledesantis.net
 Description: Add custom css to the whole website and to specific posts and pages.
-Version: 0.9.5
+Version: 0.9.7
 Author: Daniele De Santis
 Author URI: http://www.danieledesantis.net
 Text Domain: wp-add-custom-css
@@ -35,6 +35,7 @@ if(!class_exists('Wpacc'))
     class Wpacc
     {
 		private $options;
+
 		
 		public function __construct() {
       add_action('admin_menu', array($this, 'add_menu'));
@@ -58,7 +59,14 @@ if(!class_exists('Wpacc'))
 		
 		public function add_meta_box( $post_type ) {
 			$post_types = array('post', 'page');
-    	if ( in_array( $post_type, $post_types )) {
+
+			$this->options['custom_pages'] = explode(", ", get_option( 'wpacc_settings' )['custom_pages']);
+
+			if ( isset($this->options['custom_pages']) && $this->options['custom_pages'] != ''){
+				$post_types = array_merge($this->options['custom_pages'],$post_types);
+			}
+
+    		if ( in_array( $post_type, $post_types )) {
 				add_meta_box('wp_add_custom_css', __( 'Custom CSS', 'wp-add-custom-css' ), array( $this, 'render_meta_box_content' ), $post_type, 'advanced', 'high');
 			}
 		}
@@ -102,8 +110,9 @@ if(!class_exists('Wpacc'))
         <form id="worpress_custom_css_form" method="post" action="options.php">
         <?php settings_fields( 'wpacc_group' ); ?>
         <?php do_settings_sections( 'wp-add-custom-css_settings' ); ?>
-				<?php submit_button( __('Save', 'wp-add-custom-css') ); ?>
-				</form>
+				<?php submit_button( __('Save', 'wp-add-custom-css') ); 
+				?>
+		</form>
 				<h3><?php echo __('Credits', 'wp-add-custom-css'); ?></h3>
 				<ul>
 					<li><?php echo __('"WP Add Custom CSS" is a plugin by', 'wp-add-custom-css'); ?> <a href="http://www.danieledesantis.net/" target="_blank" title="Daniele De Santis">Daniele De Santis</a></li>
@@ -113,12 +122,19 @@ if(!class_exists('Wpacc'))
 		}
 		
 		public function print_section_info() {
-			echo __('Write here the CSS rules you want to apply to the whole website.', 'wp-add-custom-css');
+			echo __('Write the CSS rules you want to apply to the whole website here.', 'wp-add-custom-css');
     }
+   		public function print_custom_post_type_info(){
+    		echo __('Add the name of custom Pages/Posts to incorporate the Custom CSS widget on (Seperate each type by a comma).', 'wp-add-custom-css');		
+	}
 		
 		public function main_css_input() {
     	$custom_rules = isset( $this->options['main_custom_style'] ) ? esc_attr( $this->options['main_custom_style'] ) : '';
 			echo '<textarea name="wpacc_settings[main_custom_style]" style="width:100%; min-height:300px;">' . $custom_rules . '</textarea>';
+    }
+		public function custom_pages_input() {
+    	$custom_pages = isset( $this->options['custom_pages'] ) ? esc_attr( $this->options['custom_pages'] ) : '';
+			echo '<input type="text" name="wpacc_settings[custom_pages]" style="width:100%; max-height:50px;" value="'.$custom_pages.'">';
     }
 		
 		public function init_settings() {
@@ -126,19 +142,11 @@ if(!class_exists('Wpacc'))
 				'wpacc_group',
 				'wpacc_settings'
 			);	
-			add_settings_section(
-					'wpacc_main_style',
-					__('Main CSS', 'wp-add-custom-css'),
-					array( $this, 'print_section_info' ),
-					'wp-add-custom-css_settings'
-			);
-			add_settings_field(
-					'main_custom_style',
-					__('CSS rules', 'wp-add-custom-css'),
-					array( $this, 'main_css_input' ),
-					'wp-add-custom-css_settings',
-					'wpacc_main_style'          
-			);
+			add_settings_section('custom_pages_section', __('Include Custom CSS Widget in Custom Pages/Posts', 'wp-add-custom-css'), array( $this, 'print_custom_post_type_info' ),'wp-add-custom-css_settings');
+			  add_settings_field('custom_pages_field',__('Custom Pages/Post List:', 'wp-add-custom-css'),array( $this, 'custom_pages_input' ),'wp-add-custom-css_settings','custom_pages_section');
+
+			add_settings_section('wpacc_main_style', __('Main CSS', 'wp-add-custom-css'), array( $this, 'print_section_info' ),'wp-add-custom-css_settings');
+			  add_settings_field('main_custom_style',__('CSS rules', 'wp-add-custom-css'),array( $this, 'main_css_input' ),'wp-add-custom-css_settings','wpacc_main_style');
 		}
 		
 		public function delete_options() {
@@ -169,7 +177,12 @@ if(!class_exists('Wpacc'))
 		public function add_custom_css() {
 			$this->options = get_option( 'wpacc_settings' );
 			if ( isset($this->options['main_custom_style']) && $this->options['main_custom_style'] != '') {
-				wp_register_style( 'wp-add-custom-css', get_bloginfo('url') . '?display_custom_css=css' );
+				if ( function_exists('icl_object_id') ) {
+					$css_base_url = site_url();
+				} else {
+					$css_base_url = get_bloginfo('url');
+				}
+				wp_register_style( 'wp-add-custom-css', $css_base_url . '?display_custom_css=css' );
 				wp_enqueue_style( 'wp-add-custom-css' );	
 			}
 		}
