@@ -60,7 +60,7 @@ if(!class_exists('Wpacc'))
 		public function add_meta_box( $post_type ) {
 			$post_types = array('post', 'page');
 
-			$this->options['custom_pages'] = explode(", ", get_option( 'wpacc_settings' )['custom_pages']);
+			$this->options['custom_pages'] = get_option( 'wpacc_settings' )['custom_pages'];
 
 			if ( isset($this->options['custom_pages']) && $this->options['custom_pages'] != ''){
 				$post_types = array_merge($this->options['custom_pages'],$post_types);
@@ -110,8 +110,8 @@ if(!class_exists('Wpacc'))
         <form id="worpress_custom_css_form" method="post" action="options.php">
         <?php settings_fields( 'wpacc_group' ); ?>
         <?php do_settings_sections( 'wp-add-custom-css_settings' ); ?>
-				<?php submit_button( __('Save', 'wp-add-custom-css') ); 
-				?>
+				<?php submit_button( __('Save', 'wp-add-custom-css') );	?>
+
 		</form>
 				<h3><?php echo __('Credits', 'wp-add-custom-css'); ?></h3>
 				<ul>
@@ -125,7 +125,7 @@ if(!class_exists('Wpacc'))
 			echo __('Write the CSS rules you want to apply to the whole website here.', 'wp-add-custom-css');
     }
    		public function print_custom_post_type_info(){
-    		echo __('Add the name of custom Pages/Posts to incorporate the Custom CSS widget on (Seperate each type by a comma).', 'wp-add-custom-css');		
+    		echo __('Check all of the Custom Post types that you want to include the CSS widget on.', 'wp-add-custom-css');		
 	}
 		
 		public function main_css_input() {
@@ -134,7 +134,22 @@ if(!class_exists('Wpacc'))
     }
 		public function custom_pages_input() {
     	$custom_pages = isset( $this->options['custom_pages'] ) ? esc_attr( $this->options['custom_pages'] ) : '';
-			echo '<input type="text" name="wpacc_settings[custom_pages]" style="width:100%; max-height:50px;" value="'.$custom_pages.'">';
+
+		echo ("<fieldset>");
+		foreach(get_post_types(array('public' => true,'_builtin' => false), "objects") as $post_type=>$info){
+			if(!empty($custom_pages)){
+				if(isset($this->options['custom_pages']["$post_type"])){
+					echo('<input type="checkbox" name="wpacc_settings[custom_pages]['.$post_type.']" value="'.$post_type.'" checked/>' .$info->labels->name. '<br />');
+				}
+				else {
+					echo('<input type="checkbox" name="wpacc_settings[custom_pages]['.$post_type.']" value="'.$post_type.'"/>' .$info->labels->name. '<br />');
+				}
+			}
+			else {
+				echo('<input type="checkbox" name="wpacc_settings[custom_pages]['.$post_type.']" value="'.$post_type.'" />' .$info->labels->name. '<br />');	
+			}
+		}
+		echo ("</fieldset");
     }
 		
 		public function init_settings() {
@@ -143,7 +158,7 @@ if(!class_exists('Wpacc'))
 				'wpacc_settings'
 			);	
 			add_settings_section('custom_pages_section', __('Include Custom CSS Widget in Custom Pages/Posts', 'wp-add-custom-css'), array( $this, 'print_custom_post_type_info' ),'wp-add-custom-css_settings');
-			  add_settings_field('custom_pages_field',__('Custom Pages/Post List:', 'wp-add-custom-css'),array( $this, 'custom_pages_input' ),'wp-add-custom-css_settings','custom_pages_section');
+			  add_settings_field('custom_pages_field',__('Custom Post Types:', 'wp-add-custom-css'),array( $this, 'custom_pages_input' ),'wp-add-custom-css_settings','custom_pages_section');
 
 			add_settings_section('wpacc_main_style', __('Main CSS', 'wp-add-custom-css'), array( $this, 'print_section_info' ),'wp-add-custom-css_settings');
 			  add_settings_field('main_custom_style',__('CSS rules', 'wp-add-custom-css'),array( $this, 'main_css_input' ),'wp-add-custom-css_settings','wpacc_main_style');
